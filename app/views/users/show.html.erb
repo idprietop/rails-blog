@@ -1,0 +1,25 @@
+<h1>User: <%= @user.username%></h1>
+<h1>Followers: <%= @user.followers.length %></h1>
+<ul>
+  <% @user.followers.each do |follower| %>
+    <li>
+      <%= follower.username %>
+    </li>
+  <% end %>
+</ul>
+
+<h1>Followeds: <%= @user.followings.length %></h1>
+<ul>
+  <% @user.followings.each do |following| %>
+    <li>
+      <%= following.username %>
+    </li>
+  <% end %>
+</ul>
+  <% if @user.id == current_user.id %>
+      <%= button_to "Back", articles_path, method: :get%>
+  <% elsif current_user.followings.include?(@user) %>
+      <h5><%= button_to "Unfollow", unfollow_user_path, user: @user%></h5>
+  <% else %>
+      <h5><%= button_to "Follow", follow_user_path, user: @user %></h5>
+  <% end%>
