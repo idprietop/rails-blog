@@ -1,3 +1,9 @@
+<<<<<<< Updated upstream
+=======
+<h1>Welcome, <%= current_user.username %></h1>
+<%= link_to 'Profile', current_user %>
+
+>>>>>>> Stashed changes
 <h1>List of Articles</h1>
 
 Our blog has <%= Article.public_count %> articles and counting!
@@ -5,9 +11,20 @@ Our blog has <%= Article.public_count %> articles and counting!
 <ul>
   <% @articles.each do |article| %>
     <li>
+<<<<<<< Updated upstream
       <%= link_to article.title, article %>
+=======
+      <%= link_to article.title, article %> Created by:
+      <%= link_to User.find_by(id: article.user_id).username,
+      User.find_by(id: article.user_id) %>
+>>>>>>> Stashed changes
     </li>
   <% end %>
 </ul>
 
+<<<<<<< Updated upstream
 <%= link_to "New Article", new_article_path %>
+=======
+<%= link_to "New Article", new_article_path %> <br/>
+<%= button_to "Logout", logout_path, method: :delete%>
+>>>>>>> Stashed changes
