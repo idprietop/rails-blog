@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
-  before_action :validate_session, only: [:new, :welcome]
+  before_action :validate_session, only: %i[new welcome]
   def create
     @user = User.find_by(username: params[:username])
-      if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
-        redirect_to articles_path
-      else
-        redirect_to login_path
-      end
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to articles_path
+    else
+      redirect_to login_path
+    end
   end
 
   def destroy
@@ -18,8 +18,6 @@ class SessionsController < ApplicationController
   private
 
   def validate_session
-    if logged_in?
-      redirect_to articles_path
-    end
+    redirect_to articles_path if logged_in?
   end
 end

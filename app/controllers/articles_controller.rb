@@ -43,8 +43,8 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     if @article.user_id == current_user.id
-    @article.destroy
-    redirect_to articles_path
+      @article.destroy
+      redirect_to articles_path
     else
       redirect_to @article
     end
@@ -57,8 +57,6 @@ class ArticlesController < ApplicationController
   end
 
   def validate_session
-    unless logged_in?
-      redirect_to login_path
-    end
+    redirect_to login_path unless logged_in?
   end
 end
