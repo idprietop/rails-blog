@@ -9,8 +9,8 @@ Our blog has <%= Article.public_count %> articles and counting!
   <% @articles.each do |article| %>
     <li>
       <%= link_to article.title, article %> Created by:
-      <%= link_to User.find_by(id: article.user_id).username,
-      User.find_by(id: article.user_id)%>
+      <%= link_to creator_user(article.user_id).username,
+      creator_user(article.user_id)%>
     </li>
   <% end %>
 </ul>

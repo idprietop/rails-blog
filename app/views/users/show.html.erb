@@ -1,16 +1,16 @@
 <h1>User: <%= @user.username%></h1>
-<h1>Followers: <%= @user.followers.length %></h1>
+<h1>Followers: <%= @followers.length %></h1>
 <ul>
-  <% @user.followers.each do |follower| %>
+  <% @followers.each do |follower| %>
     <li>
       <%= follower.username %>
     </li>
   <% end %>
 </ul>
 
-<h1>Followeds: <%= @user.followings.length %></h1>
+<h1>Followeds: <%= @followings.length %></h1>
 <ul>
-  <% @user.followings.each do |following| %>
+  <% @followings.each do |following| %>
     <li>
       <%= following.username %>
     </li>
