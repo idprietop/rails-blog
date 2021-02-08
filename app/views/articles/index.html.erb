@@ -1,3 +1,7 @@
+<% if logged_in? %>
+    <h1>Welcome, <%= current_user.username %></h1>
+<%end%>
+
 <h1>List of Articles</h1>
 
 Our blog has <%= Article.public_count %> articles and counting!
@@ -5,9 +9,11 @@ Our blog has <%= Article.public_count %> articles and counting!
 <ul>
   <% @articles.each do |article| %>
     <li>
-      <%= link_to article.title, article %>
+      <%= link_to article.title, article %> Created by:
+      <%= User.find_by(id: article.user_id).username %>
     </li>
   <% end %>
 </ul>
 
 <%= link_to "New Article", new_article_path %>
+<%= button_to "Logout", logout_path, method: :delete%>
