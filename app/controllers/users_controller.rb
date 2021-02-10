@@ -18,18 +18,17 @@ class UsersController < ApplicationController
 
   def unfollow
     @user = User.find(params[:id])
-      if @user.nil?
-        redirect_to articles_path
-      else
-        @user.received_follows.find_by(follower_id: current_user.id).destroy
-        redirect_to @user
-      end
+    if @user.nil?
+      redirect_to articles_path
+    else
+      @user.received_follows.find_by(follower_id: current_user.id).destroy
+      redirect_to @user
+    end
   end
+
   private
 
   def validate_session
-    unless logged_in?
-      redirect_to login_path
-    end
+    redirect_to login_path unless logged_in?
   end
 end
