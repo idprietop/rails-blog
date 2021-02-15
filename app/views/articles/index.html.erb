@@ -1,6 +1,5 @@
-<% if logged_in? %>
-    <h1>Welcome, <%= current_user.username %></h1>
-<%end%>
+<h1>Welcome, <%= current_user.username %></h1>
+<%= link_to 'Profile', current_user %>
 
 <h1>List of Articles</h1>
 
@@ -10,7 +9,8 @@ Our blog has <%= Article.public_count %> articles and counting!
   <% @articles.each do |article| %>
     <li>
       <%= link_to article.title, article %> Created by:
-      <%= User.find_by(id: article.user_id).username %>
+      <%= link_to find_article_owner(article.user_id).username,
+      find_article_owner(article.user_id)%>
     </li>
   <% end %>
 </ul>
